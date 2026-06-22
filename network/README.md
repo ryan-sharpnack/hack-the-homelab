@@ -1,1 +1,3 @@
-Network diagrams, IP schema, and topology documentation for the NDC homelab.
+## NDC Network Architecture
+
+![NDC Network Diagram](./NetworkDiagram.png)
