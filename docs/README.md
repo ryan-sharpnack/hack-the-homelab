@@ -4,7 +4,7 @@
 
 ## What this is
 
-Ironbridge Health Alliance (IHA) is a simulated multi-site healthcare enterprise built as a hands-on security architecture portfolio project. It exists to demonstrate real-world blue team, GRC, and enterprise security architecture skills — network segmentation, identity architecture, detection engineering, compliance mapping, and risk management.
+Ironbridge Health Alliance (IHA) is a simulated multi-site healthcare enterprise built as a hands-on security architecture portfolio project. It exists to demonstrate real-world blue team, GRC, and enterprise security architecture skills — network segmentation, identity architecture, detection engineering, compliance mapping, and risk management — in an environment realistic enough to hold up in front of healthcare IT, general IT, and cybersecurity hiring conversations.
 
 ## How to read this
 
