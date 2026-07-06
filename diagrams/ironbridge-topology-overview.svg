@@ -1,0 +1,35 @@
+<svg viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>Ironbridge Health Alliance topology overview</title>
+  <desc>Corporate HQ contains the AD forest root and SOC/NOC, connected to a main hospital site and a regional clinic. The clinic is highlighted as running a legacy Active Directory domain with a one-way trust, representing acquired-site risk.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="140" y="40" width="400" height="170" rx="20" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="160" y="64" font-size="15" font-weight="600" fill="#1F2937">Corporate HQ</text>
+  <text x="160" y="80" font-size="12" fill="#4B5563">Root domain, policy control</text>
+
+  <rect x="160" y="100" width="170" height="90" rx="12" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="245" y="130" font-size="14" font-weight="600" fill="#1F2937" text-anchor="middle">AD forest root</text>
+  <text x="245" y="150" font-size="12" fill="#4B5563" text-anchor="middle">Identity, GPO, DNS</text>
+
+  <rect x="350" y="100" width="170" height="90" rx="12" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="435" y="130" font-size="14" font-weight="600" fill="#1F2937" text-anchor="middle">SOC / NOC</text>
+  <text x="435" y="150" font-size="12" fill="#4B5563" text-anchor="middle">Wazuh, alerting</text>
+
+  <line x1="250" y1="210" x2="190" y2="280" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="430" y1="210" x2="490" y2="280" stroke="#4B5563" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="60" y="280" width="260" height="110" rx="16" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="190" y="315" font-size="15" font-weight="600" fill="#1F2937" text-anchor="middle">Main hospital</text>
+  <text x="190" y="335" font-size="12" fill="#4B5563" text-anchor="middle">Clinical VLAN, imaging</text>
+
+  <rect x="360" y="280" width="260" height="110" rx="16" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="490" y="315" font-size="15" font-weight="600" fill="#92400E" text-anchor="middle">Regional clinic</text>
+  <text x="490" y="335" font-size="12" fill="#92400E" text-anchor="middle">Legacy AD, 1-way trust</text>
+
+  <rect x="260" y="400" width="16" height="16" rx="3" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="284" y="412" font-size="12" fill="#4B5563">amber = inherited legacy risk (acquired site)</text>
+</svg>
