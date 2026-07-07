@@ -10,6 +10,7 @@ Repo name: `hack-the-homelab` (the umbrella brand repo — Ironbridge Health All
 /docs/         → design documentation (01-08)
 /journal/      → daily build/ops journal entries
 /runbooks/     → reusable technical runbooks
+/evidence/     → dated screenshots/artifacts supporting journal and runbook entries
 /diagrams/     → network/architecture diagrams
 /branding/     → logo, icon, and social preview assets
 ```
@@ -35,6 +36,10 @@ Example: `IHA-RB-SEC-KERBEROS-AUDIT-POLICY.md`
 ## Commit cadence
 
 End-of-day batched commits, consistent with prior practice — one clean commit per working session rather than many small ones.
+
+## Evidence
+
+Screenshots and other supporting artifacts live in `/evidence/YYYY-MM-DD/`, one dated folder per working session, matching the journal's date convention. Files use lowercase, hyphen-separated, descriptive names reflecting content (e.g., `fw01-libvirt-chain-verification.png`), not tool-generated timestamps. Journal entries and runbooks link to evidence using relative paths (e.g., `../evidence/2026-07-06/vlan10-corp-config.png`) rather than embedding images directly in `/journal/` or `/runbooks/`. See `evidence/README.md` for full detail.
 
 ## Diagrams
 
