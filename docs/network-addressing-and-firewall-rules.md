@@ -63,4 +63,4 @@ All rules below sit on a default-deny base — no "allow any" rules exist on any
 
 **RPC dynamic range (49152–65535):** this is the widest rule in the set by port count. It reflects the standard Windows RPC dynamic port allocation and is required for AD replication and management traffic. Flagged as a candidate for future hardening — Windows supports restricting RPC to a smaller static range via registry configuration, which would allow this rule to be narrowed in a later phase.
 
-**Reference screenshots:** GUI confirmation of the applied rule sets for each interface are archived at `day25-14-pfsense-lan-rules-final.png`, `day25-15-pfsense-opt1-rules-final.png`, and `day25-16-pfsense-opt2-rules-final.png`.
+**Reference screenshots:** GUI confirmation of the applied rule sets for each interface are archived at `pfsense-lan-rules-final.png`, `pfsense-opt1-rules-final.png`, and `pfsense-opt2-rules-final.png`.
