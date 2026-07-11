@@ -3,7 +3,7 @@
 | Phase | Name | Scope | Exit criteria |
 |---|---|---|---|
 | 0 | Concept & scoping | Fresh-build decision, project scope, hardware confirmation | Complete |
-| 1 | Architecture & design | Naming, network/VLAN design, identity/trust design, VM specs, compliance mapping, threat model, risk register seed, documentation conventions | Complete — this document set |
+| 1 | Architecture & design | Naming, network/VLAN design, identity/trust design, VM specs, compliance mapping, threat model, risk register seed, documentation conventions | Complete |
 | 2 | Foundation build | Stand up FW01, DC01-IRONBRIDGE, DC01-HAWTHORNE; establish the one-way trust; baseline SIEM01 deployment and agent enrollment | Trust established and visible in AD; SIEM receiving logs from both DCs |
 | 3 | Clinical environment build | Deploy WS01, APP01; enforce VLAN segmentation; run initial Nessus baseline scan | All Phase 1 VMs live; baseline vulnerability scan complete |
 | 4 | Hardening & detection validation | GPO hardening, Kerberos audit policy, SIEM rule tuning; confirm each risk register item has a mapped detection or control | Every IHA-00x risk has a documented detection or mitigation in progress |
