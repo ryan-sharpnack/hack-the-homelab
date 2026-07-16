@@ -1,0 +1,35 @@
+loki.write "endpoint" {
+  endpoint {
+    url = "http://10.50.10.20:3100/loki/api/v1/push"
+  }
+}
+
+loki.source.windowsevent "security" {
+  eventlog_name          = "Security"
+  use_incoming_timestamp = true
+  labels = {
+    job      = "windows_eventlog",
+    instance = constants.hostname,
+  }
+  forward_to = [loki.write.endpoint.receiver]
+}
+
+loki.source.windowsevent "system" {
+  eventlog_name          = "System"
+  use_incoming_timestamp = true
+  labels = {
+    job      = "windows_eventlog",
+    instance = constants.hostname,
+  }
+  forward_to = [loki.write.endpoint.receiver]
+}
+
+loki.source.windowsevent "application" {
+  eventlog_name          = "Application"
+  use_incoming_timestamp = true
+  labels = {
+    job      = "windows_eventlog",
+    instance = constants.hostname,
+  }
+  forward_to = [loki.write.endpoint.receiver]
+}
