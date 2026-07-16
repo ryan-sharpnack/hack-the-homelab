@@ -12,7 +12,7 @@
 | APP01 | Mock clinical application stand-in (EHR/imaging/pharmacy) | Linux | 1GB | 20GB |
 | **Total** | | | **12GB** | **210GB** |
 
-> **Note (2026-07-15, IHA Day 9/10):** SIEM01 was originally deployed running Wazuh, which required 8GB RAM — a deviation from this table's original 4GB spec that was never reconciled here at the time. Following the pivot to Loki/Grafana/Alloy (installer defect + hardware resource ceiling; see risk register), SIEM01 was resized back to 4GB. This restores the original Phase 1 hardware budget above rather than representing a new cut — the 12GB guest total is accurate again for the first time since Wazuh was stood up.
+> **Note (2026-07-15, IHA Day 10):** SIEM01 was originally deployed running Wazuh, which required 8GB RAM — a deviation from this table's original 4GB spec that was never reconciled here at the time. Following the pivot to Loki/Grafana/Alloy (installer defect + hardware resource ceiling; see risk register), SIEM01 was resized back to 4GB. This restores the original Phase 1 hardware budget above rather than representing a new cut — the 12GB guest total is accurate again for the first time since Wazuh was stood up.
 
 Kali Linux remains the bare-metal host and attacker platform — no RAM cost against the guest budget above.
 
