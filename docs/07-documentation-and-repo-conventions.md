@@ -13,6 +13,7 @@ Repo name: `hack-the-homelab` (the umbrella brand repo — Ironbridge Health All
 /evidence/     → dated screenshots/artifacts supporting journal and runbook entries
 /diagrams/     → network/architecture diagrams
 /branding/     → logo, icon, and social preview assets
+/configs/      → infrastructure config files committed for reference (e.g., docker-compose.yml, config.alloy)
 ```
 
 ## Runbook naming convention
