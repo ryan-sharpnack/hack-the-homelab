@@ -4,7 +4,7 @@ Network and architecture diagrams for Ironbridge Health Alliance, as portable, s
 
 ## Contents
 
-- `ironbridge-topology-overview.svg` — high-level site topology: Corporate HQ, Main Hospital, Hawthorne Clinic
+- `updated-ironbridge-topology-overview.svg` — high-level site topology: Corporate HQ, Main Hospital, Hawthorne Clinic
 - `ironbridge-vlan-network-diagram.svg` — VLAN/IP scheme and the Hawthorne one-way AD trust
 
 Referenced in [`/docs/02-network-architecture.md`](../docs/02-network-architecture.md) and [`/docs/03-identity-architecture.md`](../docs/03-identity-architecture.md).
