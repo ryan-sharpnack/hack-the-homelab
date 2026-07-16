@@ -1,7 +1,7 @@
 # Network Addressing & Firewall Rule Set
 
 **Component:** FW01 (pfSense) — IP Addressing Plan & Inter-VLAN Firewall Rules
-**Date:** July 8, 2026 (Day 25 of 1,000) — updated July 13, 2026 (IHA Day 8, SIEM01 egress rules)
+**Date:** July 8, 2026 (Day 25 of 1,000) — updated July 13, 2026 (IHA Day 8, SIEM01 egress rules) — updated July 15, 2026 (IHA Day 9/10, Wazuh→Loki pivot: legacy agent ports disabled, Loki push rule added)
 **Status:** Implemented and verified in pfSense GUI
 
 ---
@@ -50,19 +50,20 @@ All rules below sit on a default-deny base — no "allow any" rules exist on any
 
 ### OPT1 tab (traffic originating from VLAN20-Hosp)
 
-| Source | Destination | Port | Protocol | Purpose |
-|---|---|---|---|---|
-| 10.50.20.0/24 | 10.50.10.20 (SIEM01) | 1514 | TCP | Wazuh agent event data |
-| 10.50.20.0/24 | 10.50.10.20 | 1515 | TCP | Wazuh agent enrollment |
+| Source | Destination | Port | Protocol | Purpose | Status |
+|---|---|---|---|---|---|
+| 10.50.20.0/24 | 10.50.10.20 (SIEM01) | 1514 | TCP | Legacy Wazuh agent event data | **Disabled 2026-07-15** — superseded by Loki/Alloy pivot |
+| 10.50.20.0/24 | 10.50.10.20 | 1515 | TCP | Legacy Wazuh agent enrollment | **Disabled 2026-07-15** — superseded by Loki/Alloy pivot |
 
 ### OPT2 tab (traffic originating from VLAN30-Hawth)
 
-| Source | Destination | Port | Protocol | Purpose |
-|---|---|---|---|---|
-| 10.50.30.10 (DC-HAWTHORNE) | 10.50.10.20 (SIEM01) | 1514 | TCP | Wazuh agent event data |
-| 10.50.30.10 | 10.50.10.20 | 1515 | TCP | Wazuh agent enrollment |
-| 10.50.30.10 | 10.50.10.10 (DC-IRONBRIDGE) | 53, 88, 135, 389, 445, 464, 636, 3268, 3269 | TCP/UDP as above | AD trust (return path) |
-| 10.50.30.10 | 10.50.10.10 | 49152–65535 | TCP | RPC dynamic range |
+| Source | Destination | Port | Protocol | Purpose | Status |
+|---|---|---|---|---|---|
+| 10.50.30.10 (DC-HAWTHORNE) | 10.50.10.20 (SIEM01) | 1514 | TCP | Legacy Wazuh agent event data | **Disabled 2026-07-15** — superseded by Loki/Alloy pivot |
+| 10.50.30.10 | 10.50.10.20 | 1515 | TCP | Legacy Wazuh agent enrollment | **Disabled 2026-07-15** — superseded by Loki/Alloy pivot |
+| 10.50.30.10 | 10.50.10.20 | 3100 | TCP | Grafana Alloy → Loki push (Windows Event Log forwarding) | **Active, added 2026-07-15** |
+| 10.50.30.10 | 10.50.10.10 (DC-IRONBRIDGE) | 53, 88, 135, 389, 445, 464, 636, 3268, 3269 | TCP/UDP as above | AD trust (return path) | Active |
+| 10.50.30.10 | 10.50.10.10 | 49152–65535 | TCP | RPC dynamic range | Active |
 
 ---
 
@@ -74,4 +75,6 @@ All rules below sit on a default-deny base — no "allow any" rules exist on any
 
 **SIEM01 outbound egress (added Day 8, 2026-07-13):** SIEM01 required outbound internet access for OS package updates. Rather than a broad "allow any outbound" rule, three narrowly scoped rules were added — one host (`10.50.10.20`), one purpose each (HTTP, HTTPS, DNS) — consistent with the least-privilege posture applied throughout this rule set. ICMP (ping) was deliberately left unpermitted, as it was never an actual requirement, only a diagnostic convenience during troubleshooting; ping to `1.1.1.1` from SIEM01 is expected to fail even with these rules in place.
 
-**Reference screenshots:** GUI confirmation of the applied rule sets for each interface are archived at `day25-14-pfsense-lan-rules-final.png`, `day25-15-pfsense-opt1-rules-final.png`, `day25-16-pfsense-opt2-rules-final.png`, and `siem01-pfsense-egress-rules.png` (evidence folder: `evidence/2026-07-13/`).
+**Wazuh → Loki/Grafana/Alloy pivot (2026-07-15, IHA Day 9/10):** SIEM01's original Wazuh deployment was replaced due to an installer defect combined with a hardware resource ceiling on the host (see risk register / journal for full rationale). This changed the firewall requirements: the legacy Wazuh agent ports (1514 enrollment, 1515 event data) on OPT1 and OPT2 were **disabled, not deleted**, preserving the audit trail of what was originally provisioned and why it changed. A new rule was added on OPT2 — `10.50.30.10 → 10.50.10.20:3100 TCP` — scoped to the single HAWTHORNE host rather than the full VLAN30 subnet, consistent with the least-privilege pattern already applied to the AD-trust rules on this same interface. No equivalent rule was needed on the LAN tab for DC01-IRONBRIDGE, since IRONBRIDGE and SIEM01 share the same L2 segment and that traffic never traverses FW01 at all. The OPT1 legacy rules remain disabled with no replacement, since VLAN20 (WS01/APP01) has no active log-forwarding agent at this time.
+
+**Reference screenshots:** GUI confirmation of the applied rule sets for each interface are archived at `day25-14-pfsense-lan-rules-final.png`, `day25-15-pfsense-opt1-rules-final.png`, `day25-16-pfsense-opt2-rules-final.png`, and `siem01-pfsense-egress-rules.png` (evidence folder: `evidence/2026-07-13/`). *(Add today's OPT1/OPT2 rule-state screenshots to `evidence/2026-07-15/` and reference them here once captured.)*
